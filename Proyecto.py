@@ -8,18 +8,12 @@ def realizar_modificaciones(string, y, seleccion_combinacion):
 
     seleccion_combinacion = int(seleccion_combinacion)
 
-    # Calcular el índice de la combinación seleccionada
-    indice_combinacion = seleccion_combinacion - 1
 
-    # Calcular la cantidad total de combinaciones
+    indice_combinacion = seleccion_combinacion - 1
     total_combinaciones = 2**chunks
 
-    # Verificar si la combinación seleccionada es válida
     if 1 <= seleccion_combinacion <= total_combinaciones:
-        # Calcular el valor binario de la combinación seleccionada
         combinationes = f'{seleccion_combinacion:0{chunks}b}'
-
-        # Generar la modificación para la combinación seleccionada
         stringModificado = list(string)
         modificacion = f"Combinación {seleccion_combinacion}\n"
         for i, x in enumerate(combinationes):
