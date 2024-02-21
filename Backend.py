@@ -1,4 +1,5 @@
 import pandas as pd
+
 data = pd.read_csv('/content/dataset.csv')
 print(data)
 
@@ -7,15 +8,20 @@ posicion = list(data["posicion"])
 referencia = list(data["referencia"])
 alteracion = list(data["alteracion"])
 
-print(string)
-n = 0
-y = 5
-for x in range(5, 20):
-  for i in posicion:
-    if string.index(string[x]) == i:
-      string[i] = referencia[posicion.index(i)]
+y = 10
+chunks = len(string) // y
 
-n = n + 3
-y = y + 3
 
-print(string)
+for acumuladorChunks in range(1, chunks + 2): 
+    for b in range(1, 2**acumuladorChunks): 
+        stringModificado = list(string)  
+        combinationes = f'{b:0{acumuladorChunks}b}' 
+        
+        print(f"Combinación {b}")
+        for i, x in enumerate(combinationes):  
+            indice = i + 1  
+            if x == '1': 
+                stringModificado.extend(string[(indice - 1) * y:indice * y])
+                print(f" - Chunk {indice}")
+                
+        print(f"Secuencia ADN modificada: {' '.join(stringModificado)}\n")
